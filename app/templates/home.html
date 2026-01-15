@@ -1,0 +1,524 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOMOTO - Express Delivery</title>
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+
+</head>
+<body>
+  <div class="p">
+  <!-- Navbar -->
+     <header>
+        <div class="logo">
+            <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">   
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                  <li class="dropdown">
+                    <a href="">About <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'test' %}">Testimonials</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                        
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'page' %}">Page</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">Catalog <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                        <li><a href="{% url 'profile' %}">My account</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'contact' %}">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <a href="{% url 'contact' %}" class="phone">0905-456-987-3</a>
+            <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i><span class="cart-count">   {{ request.session.cart|length }}</span></a>
+            <i class="fa fa-search"></i>
+ 
+        </div>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1><span>Express</span><br>Home Delivery</h1>
+            <p>
+                Curabitur imperdiet varius lacus, id placerat purus vulputate non. 
+                Fusce in felis vel arcu maximus placerat eu ut arcu. Ut nunc ex, gravida vel porttitor et, pretium ac sapien.
+            </p>
+            <a href="{% url 'test' %}" class="btn">Read More</a>
+        </div>
+        <div class="hero-image">
+            <img src="{% static 'images/zomato.png' %}" alt="Delivery Guy">
+        </div>
+    </section>
+</div>
+
+
+
+<!-- phse--2 -->
+ <div class="s2">
+   <section class="categories">
+    <div class="card" id>
+      <div class="icon"><i class="fas fa-burger"></i></div>
+      <h4>Fastfood</h4>
+    </div>
+    <div class="card">
+      <div class="icon"><i class="fas fa-pizza-slice"></i></div>
+      <h4>Hot Pizza</h4>
+    </div>
+    <div class="card">
+      <div class="icon"><i class="fas fa-utensils"></i></div>
+      <h4>Asian Food</h4>
+    </div>
+    <div class="card">
+      <div class="icon"><i class="fas fa-drumstick-bite"></i></div>
+      <h4>Raw Meat</h4>
+    </div>
+  </section>
+  </div>
+
+<!-- phse--3 -->
+<div class="p3">
+ <section class="popular-section">
+    <p class="subtitle">Quick pick</p>
+    <h2 class="title">Popular Goods</h2>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <a href="#fast" class="active">Fastfood</a>
+      <a href="#hotpizza">Hot Pizza</a>
+      <a href="#asian">Asian Food</a>
+      <a href="#raw">Raw Meat</a>
+    </div>
+
+    
+     <div class="products-container">
+
+ {% for product in products|slice:":4" %}
+  <div class="product-card">
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    {% else %}
+      <img src="{% static 'images/no-image.png' %}" alt="No Image">
+    {% endif %}
+
+    <div class="product-info">
+
+      <h5>{{ product.name }}</h5>
+      <p class="price">₹ {{ product.price }}</p>
+     
+
+      <a href="{% url 'add_to_cart' product.id %}" class="add-btn">
+        ➕ Add to Cart
+      </a>
+    </div>
+  </div>
+{% endfor %}
+
+
+  {% if not products %}
+  <div class="no-products">
+    No products available right now.
+  </div>
+  {% endif %}
+
+</div>
+
+</div>
+
+
+
+
+<!-- phs----4 -->
+
+<section class="delivery-section">
+  <div class="delivery-left">
+    <img src="{% static 'images/food.jpg' %}" alt="Delivery Image">
+  </div>
+
+  <div class="delivery-right">
+    <h2>
+      <span class="white-text">Sit at Home</span><br>
+      <span class="yellow-text">We Will Take Care</span>
+    </h2>
+    <p>
+      Proin ornare posuere quam ut euismod. Nam eu nunc vitae orci ultrices imperdiet ut id ligula. 
+      Sed interdum eros eget sagittis rutrum. Vestibulum in elementum mauris. In iaculis odio urna.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <i class="fas fa-clock"></i>
+        <h3>Fast Delivery <br>in 1 Hour</h3>
+      </div>
+      <div class="feature">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Amazing <br>Mobile App</h3>
+      </div>
+      <div class="feature">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>Wide <br>Coverage Map</h3>
+      </div>
+      <div class="feature">
+        <i class="fas fa-user-shield"></i>
+        <h3>More Than <br>150 Couriers</h3>
+      </div>
+    </div>
+
+    <a href="#" class="btn">Read More</a>
+  </div>
+</section>
+
+
+
+
+<!-- phse-5 -->
+ <div class="p5">
+    <section class="restaurants">
+    <p class="subtitle">Our Recommendations</p>
+    <h2>Cafes & Restaurants</h2>
+
+    <div class="cards">
+      <!-- Card 1 -->
+      <div class="card big">
+        <span class="badge">Burgers</span>
+        <img src="{% static 'images/r1.jpg' %}" alt="Burger">
+        <div class="info">
+          <h3>Burger House</h3>
+          <p>📅 Monday - Saturday</p>
+          <p>⏰ 09:00 - 18:00</p>
+         <a href="{% url 'gallery' %}"> <button>➝</button></a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <span class="badge">Restaurants</span>
+  <img src="{% static 'images/r2.jpg' %}" alt="Burger">
+        <div class="info">
+          <h3>Restaurant Monaco</h3>
+          <p>📅 Monday - Saturday</p>
+          <p>⏰ 09:00 - 18:00</p>
+          <a href="{% url 'blog' %}"> <button>➝</button></a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <span class="badge">Pubs</span>
+       <img src="{% static 'images/r3.jpg' %}" alt="Burger">
+        <div class="info">
+          <h3>Ribs and Beer</h3>
+          <p>📅 Monday - Saturday</p>
+          <p>⏰ 09:00 - 18:00</p>
+      <a href="{% url 'gallery' %}"> <button>➝</button></a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card">
+        <span class="badge">Asian food</span>
+      <img src="{% static 'images/r4.jpg' %}" alt="Burger">
+        <div class="info">
+          <h3>Sushiteria</h3>
+          <p>📅 Monday - Saturday</p>
+          <p>⏰ 09:00 - 18:00</p>
+         <a href="{% url 'gallery' %}"> <button>➝</button></a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card">
+        <span class="badge">BBQ</span>
+  <img src="{% static 'images/r6.jpg' %}" alt="Burger">
+        <div class="info">
+          <h3>Happy Grill Cafe</h3>
+          <p>📅 Monday - Saturday</p>
+          <p>⏰ 09:00 - 18:00</p>
+           <a href="{% url 'blog' %}"> <button>➝</button></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-more">
+      <a href="{% url 'gallery' %}"> <button>View More</button></a>
+    </div>
+  </section>
+
+</div>
+
+<!-- phse--6 -->
+<div class="p6">
+ <section class="hero1">
+    <div class="hero1-content">
+      <h1>
+        Always <br>
+        the <span>Hottest</span> <br>
+        Pizza
+      </h1>
+      <p>
+        Curabitur imperdiet varius lacus, id placerat purus vulputate non. 
+        Fusce in felis vel arcu maximus placerat eu at orci. 
+        Ut nunc ex, gravida vel porttitor et, pretium ac sapien.
+      </p>
+      <button>Get Pizza</button>
+    </div>
+    <div class="hero-image">
+      <img src="{% static 'images/pizza.png' %}" alt="Pizza Box">
+    </div>
+  </section>
+
+</div>
+
+<!-- phe---7 -->
+ <div class="p7">
+    <section class="testimonial-section">
+    <h3>Testimonials</h3>
+    <h2>What Our Clients Say</h2>
+
+    <div class="testimonials">
+      <!-- Card 1 -->
+      <div class="testimonial-card">
+        <div class="quote">❝</div>
+        <p>
+          Excellent service! The team was professional and very supportive.  
+          Highly recommend for quality and reliability.
+        </p>
+        <div class="testimonial-author">
+          <img src="{% static 'images/cleint1.jpg' %}" alt="Client">
+          <h4>John Doe</h4>
+          <p>Developer</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="testimonial-card">
+        <div class="quote">❝</div>
+        <p>
+          I had a wonderful experience. Everything was delivered on time  
+          and exceeded my expectations.
+        </p>
+        <div class="testimonial-author">
+         <img src="{% static 'images/cleint-3.jpg' %}" alt="Client">
+          <h4>Sarah Smith</h4>
+          <p>Designer</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="testimonial-card">
+        <div class="quote">❝</div>
+        <p>
+          Great support team and amazing results. I will definitely  
+          work with them again in the future.
+        </p>
+        <div class="testimonial-author">
+         <img src="{% static 'images/cleint-2.jpg' %}" alt="Client">
+          <h4>Michael Brown</h4>
+          <p>Entrepreneur</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ </div>
+
+ <section class="app-section">
+  <div class="app-left">
+    <h2>Get More With <span class="highlight">Our Application</span></h2>
+    <p>
+      Nunc pellentesque orci sed tempor pharetra. Morbi molestie purus in interdum facilisis. 
+      Mauris commodo mi a egestas sollicitudin. Mauris pharetra placerat sem vel fringilla.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <span class="num">01</span>
+        <p>Follow Delivery Status</p>
+      </div>
+      <div class="feature">
+        <span class="num">02</span>
+        <p>Order From Any Location</p>
+      </div>
+      <div class="feature">
+        <span class="num">03</span>
+        <p>Get Important Notices</p>
+      </div>
+    </div>
+<!-- 
+    <div class="store-btns">
+      <a href="#"><img src="{% static 'images/app-1.png' %}" alt="App Store"></a>
+   <a href="#"><img src="{% static 'images/app-2.png' %}" alt="App Store"></a>
+    </div> -->
+
+    <div class="store-btns">
+  <a href="https://play.google.com/store/apps/details?id=com.example" target="_blank">
+    <img src="{% static 'images/app-1.png' %}" alt="Google Play Store">
+  </a>
+  <a href="https://apps.apple.com/in/app/example/id1234567890" target="_blank">
+    <img src="{% static 'images/app-2.png' %}" alt="Apple App Store">
+  </a>
+</div>
+
+  </div>
+
+  <div class="app-right">
+    <img src="{% static 'images/contact.png' %}" alt="Mobile App">
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter">
+  <div class="newsletter-content">
+    <div class="text">
+      <i class="fas fa-envelope-open-text"></i>
+      <span>Get the latest news and offers</span>
+      <h3>Subscribe to our newsletter</h3>
+    </div>
+    <div class="form">
+      <input type="email" placeholder="Your email ...">
+      <button>Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- phse--9 -->
+
+<section class="blog-section">
+  <h5>Our Blog</h5>
+  <h2>Recent Articles</h2>
+
+  <div class="blog-container">
+    <!-- Main Blog Post -->
+    <div class="blog-main">
+      <img src="{% static 'images/blog1.jpg' %}" alt="Main Article">
+      <span class="tag">Food Delivery</span>
+      <h3>All City Cafes and Restaurants Switched to Delivery Mode</h3>
+      <p>
+        Morbi volutpat nisi a ligula vestibulum placerat. Suspendisse venenatis pulvinar nibh sed convallis.
+        Cras elementum nunc a purus sodales tincidunt. Duis fringilla quam at tellus ...
+      </p>
+      <div class="blog-meta">
+        <span>📅 December 9, 2019</span>
+        <span>💬 1</span>
+        <span>👁️ 2</span>
+      </div>
+    </div>
+
+    <!-- Sidebar Posts -->
+    <div class="blog-sidebar">
+      <!-- Card 1 -->
+      <div class="sidebar-card">
+      <img src="{% static 'images/blog2.jpg' %}" alt="Main Article">
+        <div class="sidebar-content">
+          <span class="tag">Food Delivery</span>
+          <h4>Creative Packaging as a Successful Marketing Move</h4>
+          <div class="sidebar-meta">
+            <span>📅 December 8, 2019</span>
+            <span>💬 0</span>
+            <span>👁️ 2</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="sidebar-card">
+           <img src="{% static 'images/blog3.jpg' %}" alt="Main Article">
+        <div class="sidebar-content">
+          <span class="tag">Food Delivery</span>
+          <h4>Modern Food Delivery Services Overview</h4>
+          <div class="sidebar-meta">
+            <span>📅 November 2, 2019</span>
+            <span>💬 0</span>
+            <span>👁️ 2</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="sidebar-card">
+         <img src="{% static 'images/blog4.jpg' %}" alt="Main Article">
+        <div class="sidebar-content">
+          <span class="tag">Gomoto</span>
+          <h4>Bottled Water Home Delivery Companies</h4>
+          <div class="sidebar-meta">
+            <span>📅 November 30, 2018</span>
+            <span>💬 1</span>
+            <span>👁️ 2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="{% url 'blog' %}" class="read-more-btn">Read More</a>
+</section>
+
+<!-- phse--10 -->
+ 
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="cta-img">
+    <img src="{% static 'images/blog4.jpg' %}" alt="Main Article">
+    </div>
+    <div class="cta-text">
+      <div class="cta-icon">
+        <i class="fas fa-phone-alt"></i>
+      </div>
+      <p class="cta-subtitle">Call us to make order now</p>
+      <p class="cta-number">90-500-28-999</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-logo">
+                <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">
+ 
+  </div>
+  <p class="footer-text">
+    Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo.
+    Vestibulum mattis, nisi ut faucibus commodo, risus ex commodo.
+  </p>
+
+  <div class="footer-social">
+    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+    <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      Like-themes © All Rights Reserved - 2020 - <a href="#">Purchase</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,404 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOMOTO - All Products</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <style>
+    /* ==========================
+       Table & Container
+       ========================== */
+    table {
+      width: 85%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background: #fffbea; /* light yellow */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Header */
+    thead {
+      background: #000; /* black */
+      color: #fdb813;  /* bright yellow */
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    th {
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+
+    /* Table body */
+    td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      font-size: 15px;
+      color: #333;
+    }
+    tbody tr:nth-child(even) {
+      background: #fff9e6; /* lighter yellow */
+    }
+    tbody tr:hover {
+      background: #ffeb99; /* hover highlight */
+    }
+
+    /* Images */
+    img {
+      width: 70px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid #000;
+    }
+
+    /* Cart buttons (+, -, Remove) */
+    .cart-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      margin: 0 3px;
+      border-radius: 6px;
+      border: 2px solid #000;
+      background: #fdb813; /* yellow background */
+      color: #000; /* black text */
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .cart-btn:hover {
+      background: #000;
+      color: #fdb813;
+    }
+
+    /* Footer */
+    tfoot {
+      font-weight: bold;
+      background: #000;
+      color:  #fdb813;
+    }
+    tfoot td {
+      padding: 14px;
+      font-size: 16px;
+      color:  #fdb813;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      table {
+        width: 95%;
+      }
+      td, th {
+        font-size: 13px;
+        padding: 10px;
+      }
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+
+form {
+  width: 380px;
+  margin-left: 100px;
+  padding: 35px 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 30px rgba(255, 255, 0, 0.15);
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+form:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 40px rgba(255, 255, 0, 0.25);
+}
+
+form h1 {
+  font-size: 22px;
+ color: #080808;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+form .card-text {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(90deg,  #fdb813,  #fdb813);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+form input[type="number"] {
+  display: none;
+}
+
+form button {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg,  #fdb813, #fdb813);
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 234, 0, 0.3);
+}
+
+form button:hover {
+  background: linear-gradient(90deg, #fdb813,  #fdb813);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(10, 10, 10, 0.5);
+}
+
+.checkout-btn-container {
+  position: absolute;
+  bottom: -450px;
+  right: 60px;
+}
+
+.checkout-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #ffea00, #ffbb00);
+  color: #000;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255, 234, 0, 0.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.checkout-btn:hover {
+  background: linear-gradient(90deg, #ffbb00, #ffea00);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 234, 0, 0.5);
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== Navbar Start ===== -->
+   <header>
+        <div class="logo">
+            <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">   
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                  <li class="dropdown">
+                    <a href="">About <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'test' %}">Testimonials</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                        
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'page' %}">Page</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">Catalog <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                        <li><a href="{% url 'profile' %}">My account</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'contact' %}">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <a href="{% url 'contact' %}" class="phone">0905-456-987-3</a>
+            <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i><span class="cart-count">   {{ request.session.cart|length }}</span></a>
+            <i class="fa fa-search"></i>
+        </div>
+    </header>
+
+    
+<section class="hero-banner">
+  <div class="overlay">
+    <div class="banner-content">
+      <h1>All Products</h1>
+      <div class="breadcrumb">
+        <a href="{% url 'home' %}">Home</a>
+        <span>|</span>
+        <span>Cart</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+{% if items %}
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>
+        {% if item.product.image %}
+        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+        {% endif %}
+      </td>
+      <td>{{ item.product.name }}</td>
+      <td>
+        <a href="{% url 'update' item.product.id 'decrease' %}" class="cart-btn">-</a>
+        {{ item.quantity }}
+        <a href="{% url 'update' item.product.id 'increase' %}" class="cart-btn">+</a>
+      </td>
+      <td>₹ {{ item.subtotal }}</td>
+      <td>
+        <a href="{% url 'remove' item.product.id %}" class="cart-btn">Remove</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <!-- <td colspan="3">Total</td>
+      <td colspan="2">₹ {{ total }}</td> -->
+    </tr>
+  </tfoot>
+  </table>
+
+
+  
+ 
+        <form action="{% url 'payment' %}" method="post">
+                {% csrf_token%}
+                <h1>Total Amount :</h1>
+                <p class="card-text">{{total}}</p>
+                <input type="number" name="amount" value="{{total}}" hidden>
+                <button class="btn btn-primary"> Pay </button>
+            </form>
+            {% if payment %}
+                <form action="{% url 'payment-status' %}" method="post">
+                    {% csrf_token %}
+                    <script
+                            src="https://checkout.razorpay.com/v1/checkout.js"
+                            data-key="rzp_test_pr99iascS1WRtU"
+                            data-amount="{{ payment.amount }}"
+                            data-currency="{{ payment.currency }}"
+                            data-order_id="{{ payment.id }}"
+                            data-buttontext="Pay with Razorpay"
+                            data-name="Neeraj Ecom"
+                            data-description="Thanku for visiting My Site"
+                            data-image="https://example.com/your_logo.jpg"
+                            data-prefill.name="Neeraj Kumar"   
+                            data-prefill.email="Neeraj.Patel@gmail.com"
+                            data-theme.color="#2520adff"
+                    ></script>
+                    <input type="hidden" custom="Hidden Element" name="hidden">
+                </form>
+
+            {% endif %}
+
+
+
+
+
+
+
+<div class="checkout-btn-container">
+  <a href="{% url 'checkout' %}" class="checkout-btn">Proceed to Checkout</a>
+</div>
+{% else %}
+<div style="text-align:center; margin:40px; font-size:18px; color:#000;">
+  Your cart is empty.
+  <a href="{% url 'shop' %}">Continue Shopping</a>
+</div>
+{% endif %}
+
+
+
+
+   <!-- footer -->
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="cta-img">
+    <img src="{% static 'images/blog4.jpg' %}" alt="Main Article">
+    </div>
+    <div class="cta-text">
+      <div class="cta-icon">
+        <i class="fas fa-phone-alt"></i>
+      </div>
+      <p class="cta-subtitle">Call us to make order now</p>
+      <p class="cta-number">90-500-28-999</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-logo">
+                <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">
+ 
+  </div>
+  <p class="footer-text">
+    Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo.
+    Vestibulum mattis, nisi ut faucibus commodo, risus ex commodo.
+  </p>
+
+  <div class="footer-social">
+    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+    <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      Like-themes © All Rights Reserved - 2020 - <a href="#">Purchase</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

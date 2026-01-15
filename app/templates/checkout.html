@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+</head>
+<body>
+    
+    
+  <!-- ===== Navbar Start ===== -->
+      <header>
+        <div class="logo">
+            <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">   
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                  <li class="dropdown">
+                    <a href="">About <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'test' %}">Testimonials</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                        
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'page' %}">Page</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">Catalog <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                        <li><a href="{% url 'profile' %}">My account</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'contact' %}">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <a href="{% url 'contact' %}" class="phone">0905-456-987-3</a>
+            <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i><span class="cart-count">   {{ request.session.cart|length }}</span></a>
+            <i class="fa fa-search"></i>
+        </div>
+    </header>
+<section class="hero-banner">
+  <div class="overlay">
+    <div class="banner-content">
+      <h1>Checkout</h1>
+      <div class="breadcrumb">
+        <a href="{% url 'home' %}">Home</a>
+        <span>|</span>
+        <span>Checkout</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<div class="container my-5">
+    <h2 class="mb-4">Checkout</h2>
+                                                                                                                
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Personal Information -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">Personal Information</div>
+            <div class="card-body row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                    <input type="text" name="first_name" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" name="last_name" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Mobile</label>
+                    <input type="text" name="mobile" class="form-control" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipping Information -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">Shipping Information</div>
+            <div class="card-body row g-3">
+                <div class="col-12">
+                    <label class="form-label">Address</label>
+                    <textarea name="address" class="form-control" rows="2" required></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">City</label>
+                    <input type="text" name="city" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Country</label>
+                    <input type="text" name="country" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Postcode</label>
+                    <input type="text" name="postcode" class="form-control" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipping Method -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">Shipping Method</div>
+            <div class="card-body">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="shipping_method" value="flat" id="flat" checked>
+                    <label class="form-check-label" for="flat">
+                        Flat Rate - ₹15
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="shipping_method" value="pickup" id="pickup">
+                    <label class="form-check-label" for="pickup">
+                        Pickup Point - ₹8
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">Payment Method</div>
+            <div class="card-body">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="payment_method" value="cod" id="cod" checked>
+                    <label class="form-check-label" for="cod">
+                        Cash on Delivery (COD)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="payment_method" value="card" id="card">
+                    <label class="form-check-label" for="card">
+                        Credit/Debit Card
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Place Order Button -->
+        <div class="text-end">
+            <button type="submit" class="btn btn-success btn-lg">Place Order</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+   <!-- footer -->
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="cta-img">
+    <img src="{% static 'images/blog4.jpg' %}" alt="Main Article">
+    </div>
+    <div class="cta-text">
+      <div class="cta-icon">
+        <i class="fas fa-phone-alt"></i>
+      </div>
+      <p class="cta-subtitle">Call us to make order now</p>
+      <p class="cta-number">90-500-28-999</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-logo">
+                <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">
+ 
+  </div>
+  <p class="footer-text">
+    Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo.
+    Vestibulum mattis, nisi ut faucibus commodo, risus ex commodo.
+  </p>
+
+ <div class="footer-social">
+    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+    <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      Like-themes © All Rights Reserved - 2020 - <a href="#">Purchase</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

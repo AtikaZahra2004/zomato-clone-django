@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: rgba(0,0,0,0.7);
+}
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
+}
+
+.login-modal {
+  display: flex;
+  width: 700px;
+  background: #fff;
+  margin: 60px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-section {
+  flex: 1;
+}
+
+.image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-section {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.input-box {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.password-box .toggle {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.forgot {
+  display: inline-block;
+  font-size: 14px;
+  color: black;
+  text-decoration: underline;
+  margin-bottom: 25px;
+}
+
+.btn {
+  background: black;
+  color: white;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.signup-text {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.signup-text a {
+  color: black;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}

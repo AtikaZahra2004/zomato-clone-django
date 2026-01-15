@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOMOTO - All Products</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/about.css' %}">
+</head>
+<body>
+
+  <!-- ===== Navbar Start ===== -->
+<header>
+        <div class="logo">
+            <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">
+           
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <!-- <li><a href="{% url 'about' %}">About us</a></li> -->
+
+                  <li class="dropdown">
+                    <a href="">About <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'test' %}">Testimonials</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                        
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'page' %}">Page</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="">Catalog <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="">Checkout</a></li>
+                        <li><a href="{% url 'profile' %}">My account</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'contact' %}">Contacts</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <a href="{% url 'contact' %}" class="phone">0905-456-987-3</a>
+ <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i><span class="cart-count">   {{ request.session.cart|length }}</span></a>
+
+            <i class="fa fa-search"></i>
+        </div>
+    </header>
+<section class="hero-banner">
+  <div class="overlay">
+    <div class="banner-content">
+      <h1>CARTS</h1>
+      <div class="breadcrumb">
+        <a href="{% url 'home' %}">Home</a>
+        <span>|</span>
+        <span>Cart</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+   <!-- footer -->
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="cta-img">
+    <img src="{% static 'images/blog4.jpg' %}" alt="Main Article">
+    </div>
+    <div class="cta-text">
+      <div class="cta-icon">
+        <i class="fas fa-phone-alt"></i>
+      </div>
+      <p class="cta-subtitle">Call us to make order now</p>
+      <p class="cta-number">90-500-28-999</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-logo">
+                <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">
+ 
+  </div>
+  <p class="footer-text">
+    Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo.
+    Vestibulum mattis, nisi ut faucibus commodo, risus ex commodo.
+  </p>
+
+   <div class="footer-social">
+    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+    <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      Like-themes © All Rights Reserved - 2020 - <a href="#">Purchase</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

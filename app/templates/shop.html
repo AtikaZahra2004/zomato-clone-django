@@ -1,0 +1,288 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOMOTO - All Products</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+
+  
+
+
+
+
+
+</head>
+<body>
+
+  <!-- ===== Navbar Start ===== -->
+   
+   <header>
+    
+        <div class="logo">
+            <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">   
+        </div>
+  
+
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                  <li class="dropdown">
+                    <a href="">About <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'test' %}">Testimonials</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                        
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'page' %}">Page</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">Catalog <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                        <li><a href="{% url 'profile' %}">My account</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'contact' %}">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <a href="{% url 'contact' %}" class="phone">0905-456-987-3</a>
+            <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i><span class="cart-count">   {{ request.session.cart|length }}</span></a>
+               <i class="fa fa-search" id="search-icon"></i>
+
+
+        </div>
+
+    </header>
+
+
+
+<section class="hero-banner">
+  <div class="overlay">
+    <div class="banner-content">
+      <h1>All Products</h1>
+      <div class="breadcrumb">
+        <a href="{% url 'home' %}">Home</a>
+        <span>|</span>
+        <span>Shop</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- s1 -->
+   <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="search-box">
+        <input type="text" placeholder="Search products...">
+        <button>🔍</button>
+      </div>
+
+      <div class="sidebar-box">
+        <h3>Product Categories</h3>
+        <ul>
+          <li>Asian Food</li>
+          <li>Fastfood</li>
+          <li>Food Delivery</li>
+          <li>Hot Pizza</li>
+          <li>Cheesy</li>q
+          <li>Fish & Seafood</li>
+          <li>Italian</li>
+          <li>Vegetarian</li>
+          <li>Medical Supplies</li>
+          <li>Antiseptic</li>
+          <li>Equipment</li>
+          <li>Face Mask</li>
+          <li>Latex Gloves</li>
+          <li>Pills and Syrups</li>
+          <li>Vitamins</li>
+          <li>Raw Meat</li>
+          <li>Water Delivery</li>
+          <li>Equipment</li>
+          <li>Face Mask</li>
+          <li>Latex Gloves</li>
+          <li>Pills and Syrups</li>
+          <li>Vitamins</li>
+          <li>Raw Meat</li>
+           <li>Asian Food</li>
+          <li>Fastfood</li>
+          <li>Food Delivery</li>
+          <li>Hot Pizza</li>
+          <li>Cheesy</li>q
+          <li>Fish & Seafood</li>
+          <li>Italian</li>
+          <li>Vegetarian</li>
+          <li>Medical Supplies</li>
+          <li>Antiseptic</li>
+          <li>Equipment</li>
+          <li>Face Mask</li>
+          <li>Latex Gloves</li>
+          <li>Water Delivery</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-box">
+        <h3>Filter by Price</h3>
+        <input type="range" min="0" max="470" value="250">
+        <p>Price: $0 - $470</p>
+        <button class="filter-btn">Filter</button>
+      </div>
+
+      <div class="sidebar-box">
+        <h3>Product Tags</h3>
+        <div class="tags">
+          <span>Delivery</span>
+          <span>fastfood</span>
+          <span>food</span>
+          <span>pizza</span>
+          <span>restaurant</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="products">
+      <div class="topbar">
+        <p>Showing 1–6 of 50 results</p>
+        <select>
+          <option>Default sorting</option>
+          <option>Sort by price</option>
+          <option>Sort by rating</option>
+        </select>
+      </div>
+
+
+
+<!-- products -->
+
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+
+
+<div class="products-container">
+  {% for product in products %}
+  <div class="product-card">
+    {% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    {% else %}
+    <img src="{% static 'images/no-image.png' %}" alt="No Image">
+    {% endif %}
+    <div class="product-info">
+      <h5>{{ product.name }}</h5>
+      <p class="price">₹ {{ product.price }}</p>
+      <p class="desc">{{ product.description|truncatewords:15 }}</p>
+      <a href="{% url 'add_to_cart' product.id %}" class="add-btn">
+        ➕ Add to Cart
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+
+  {% if not products %}
+  <div class="no-products">
+    No products available right now.
+  </div>
+  {% endif %}
+
+</div>
+</div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+       <a href=""> <span class="active">1</span></a>
+       <a href=""> <span>2</span></a>
+       <a href=""> <span>3</span></a>
+       <a href=""> <span>4</span></a>
+       <a href=""> <span>5</span></a>
+       <a href=""> <span>6</span></a>
+       <a href=""> <span>7</span></a>
+       <a href=""> <span>8</span></a>
+       <a href=""> <span>9</span></a>
+       <a href=""> <span>10</span></a>
+      
+      
+      </div>
+    </main>
+  </div>
+
+   <!-- footer -->
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="cta-img">
+    <img src="{% static 'images/blog4.jpg' %}" alt="Main Article">
+    </div>
+    <div class="cta-text">
+      <div class="cta-icon">
+        <i class="fas fa-phone-alt"></i>
+      </div>
+      <p class="cta-subtitle">Call us to make order now</p>
+      <p class="cta-number">90-500-28-999</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-logo">
+                <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">
+ 
+  </div>
+  <p class="footer-text">
+    Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo.
+    Vestibulum mattis, nisi ut faucibus commodo, risus ex commodo.
+  </p>
+
+ <div class="footer-social">
+    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+    <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      Like-themes © All Rights Reserved - 2020 - <a href="#">Purchase</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+</script>
+
+</body>
+</html>

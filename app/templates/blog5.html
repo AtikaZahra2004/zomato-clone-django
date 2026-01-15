@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOMOTO - All Products</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/blog1.css' %}">
+</head>
+<body>
+
+  <!-- ===== Navbar Start ===== -->
+   
+   <header>
+    
+        <div class="logo">
+            <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">   
+        </div>
+    <!-- Hidden checkbox for toggle -->
+  <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
+  <label for="menu-checkbox" class="menu-toggle">
+    <i class="fa fa-bars"></i>
+  </label>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                  <li class="dropdown">
+                    <a href="">About <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'test' %}">Testimonials</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                        
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'page' %}">Page</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">Catalog <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                        <li><a href="{% url 'profile' %}">My account</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'contact' %}">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <a href="{% url 'contact' %}" class="phone">0905-456-987-3</a>
+            <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i><span class="cart-count">   {{ request.session.cart|length }}</span></a>
+               <i class="fa fa-search" id="search-icon"></i>
+
+
+        </div>
+
+    </header>
+<section class="hero-banner">
+  <div class="overlay">
+    <div class="banner-content">
+      <h1>All City Cafes and Restaurants Switched to Delivery Mode</h1>
+      <div class="breadcrumb">
+        <a href="{% url 'home' %}">Home</a>
+        <span>|</span>
+         <a href="{% url 'home' %}">Food delivery</a>
+          <span>|</span>
+        <span>All City Cafes and Restaurants Switched to Delivery Mode</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- b1 -->
+
+<div class="blog-card">
+  <!-- Blog Image -->
+  <img src="{% static 'images/bg4.jpg' %}" alt="Food Image" class="blog-img">
+
+  <!-- Category + Date -->
+  <div class="blog-meta">
+<a href="">    <span class="category">Food Delivery</span></a>
+    <span class="date">📅 December 9, 2019</span>
+    <span class="comments">💬 1</span>
+    <span class="views">👁 2</span>
+  </div>
+
+  <!-- Blog Content -->
+  <div class="blog-content">
+    <p>
+      Morbi volutpat nisi a ligula vestibulum placerat. Suspendisse venenatis pulvinar nibh sed convallis. 
+      Cras elementum nunc a purus sodales tincidunt. Duis fringilla quam at tellus consectetur, id placerat metus tincidunt...
+    </p>
+
+    <p>
+      Pellentesque vehicula, erat eu ullamcorper aliquam, nisi sapien tincidunt erat, vel mollis leo metus a velit. 
+      In posuere tempor ante, non gravida lectus. Sed luctus, lectus non rutrum ornare...
+    </p>
+  </div>
+</div>
+
+<!-- blo-3 -->
+ <a href="nextpage.html" class="quote-box"> <!-- jis page par jana hai link yaha do -->
+  <div class="quote-content">
+    <span class="quote-icon">❝</span>
+    <p>
+      Pellentesque vehicula, erat eu ullamcorper aliquam, nisi sapien tincidunt erat, 
+      vel mollis leo metus a velit. In posuere tempor ante, non gravida lectus.
+    </p>
+    <hr>
+    <h4>Steve Maraboli</h4>
+  </div>
+</a>
+
+
+<!-- blo-4 -->
+ <div class="blog-article">
+
+  <!-- Section 1 -->
+  <h2>Cafes and Restaurants</h2>
+  <p>
+    Morbi volutpat nisi a ligula vestibulum placerat. Suspendisse venenatis pulvinar nibh sed convallis. 
+    Cras elementum nunc a purus sodales tincidunt. Duis fringilla quam at tellus consectetur...
+  </p>
+
+  <!-- Custom List -->
+  <ul class="custom-list">
+    <li>Vestibulum iaculis velit</li>
+    <li>Nunc ante varius tempus</li>
+    <li>Duis sollicitudin lacus sapien</li>
+    <li>Sed pharetra felis facilisis sed</li>
+  </ul>
+
+  <p>
+    Pellentesque vehicula, erat eu ullamcorper aliquam, nisi sapien tincidunt erat, vel mollis leo metus a velit. 
+    In posuere tempor ante, non gravida lectus...
+  </p>
+
+  <!-- Section 2 -->
+  <h2>5 Things you didn’t know about Delivery</h2>
+  <p>
+    Quisque scelerisque suscipit porta. Nunc venenatis nulla lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus...
+  </p>
+
+  <!-- Blog Image -->
+  <img src="{% static 'images/b1g.jpg' %}" alt="Food Delivery" class="blog-img">
+
+  <p>
+    Nunc placerat dignissim orci, quis auctor ligula cursus non. Morbi nec augue dui. Utam corper dui et velit pretium rhoncus...
+  </p>
+
+</div>
+<!-- blo-5 -->
+ <div class="blog-detail">
+
+  <!-- Blog Heading -->
+  <h2>Food Delivery news, articles and information</h2>
+  <p>
+    Praesent euismod felis quis suscipit fermentum. Nam facilisis nunc at posuere lacinia, in mollis magna vulputate. 
+    Phasellus posuere, quam vitae sollicitudin varius, massa nibh vehicula est, nec iaculis nulla nisl sed lorem...
+  </p>
+
+  <!-- Image Gallery -->
+  <div class="gallery">
+    <img src="{% static 'images/b2g.jpg' %}" alt="Food 1">
+    <img src="{% static 'images/b3g.jpg' %}" alt="Food 2">
+    <img src="{% static 'images/b4g.jpg' %}" alt="Food 3">
+  </div>
+
+  <p>
+    Cras eget tincidunt lorem. Sed commodo ipsum ut faucibus iaculis. Sed et mauris non purus tincidunt malesuada...
+  </p>
+
+  <!-- Large Image -->
+  <img src="{% static 'images/b5g.jpg' %}" alt="Burger" class="large-img">
+
+  <p>
+    Duis ornare purus dui, quis pellentesque sapien varius ac. Curabitur luctus tincidunt arcu a gravida. Pellentesque 
+    pretium mauris eros, consectetur vehicula sapien gravida non. Nullam sit amet odio nec sapien euismod commodo...
+  </p>
+
+  <!-- Footer Meta -->
+  <div class="blog-footer">
+    <div class="tags">
+      <strong>Tags:</strong> <span>Food</span>
+    </div>
+    <div class="share">
+      <a href="#">🔗 Share</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- blo-5 -->
+ <div class="related-posts">
+  <h3>Related posts</h3>
+  <div class="posts-grid">
+    <div class="post-card">
+      <img src="{% static 'images/bg1.jpg' %}" alt="Post 1">
+      <span class="category">Medical</span>
+      <h4>Physical Activity Reduces Harm From Tobacco and Alcoholic Drinks</h4>
+      <p class="meta">May 10, 2025 · 0 Comments</p>
+    </div>
+
+    <div class="post-card">
+      <img src="{% static 'images/bg2.jpg' %}" alt="Post 2">
+      <span class="category">Medical</span>
+      <h4>The Best Recreation Areas for General Immunity</h4>
+      <p class="meta">May 10, 2025 · 1 Comment</p>
+    </div>
+
+    <div class="post-card">
+      <img src="{% static 'images/bg3.jpg' %}" alt="Post 3">
+      <span class="category">Medical</span>
+      <h4>How Can Rheumatoid Arthritis Affect the Lungs?</h4>
+      <p class="meta">May 10, 2025 · 3 Comments</p>
+    </div>
+  </div>
+</div>
+
+<!-- Comment Section -->
+<div class="comments">
+  <h3>1 comment</h3>
+  <div class="comment">
+    <p class="author"><strong>Shane Reichert</strong> <span>· October 12, 2025 at 5:30 pm</span></p>
+    <p>
+      In perferendis reiciendis accusantium consequuntur. Provident sunt optio sed adipisci...
+    </p>
+    <a href="#" class="reply">Reply</a>
+  </div>
+</div>
+
+<!-- Comment Form -->
+<div class="comment-form">
+  <h3>Leave a comment</h3>
+  <p class="note">Your email address will not be published. Required fields are marked *</p>
+
+  <form>
+    <textarea placeholder="Comment"></textarea>
+    <input type="text" placeholder="Name *" required>
+    <input type="email" placeholder="Email *" required>
+    <button type="submit">Post Comment</button>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- footer -->
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="cta-img">
+    <img src="{% static 'images/blog4.jpg' %}" alt="Main Article">
+    </div>
+    <div class="cta-text">
+      <div class="cta-icon">
+        <i class="fas fa-phone-alt"></i>
+      </div>
+      <p class="cta-subtitle">Call us to make order now</p>
+      <p class="cta-number">90-500-28-999</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-logo">
+                <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">
+ 
+  </div>
+  <p class="footer-text">
+    Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo.
+    Vestibulum mattis, nisi ut faucibus commodo, risus ex commodo.
+  </p>
+
+   <div class="footer-social">
+    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+    <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      Like-themes © All Rights Reserved - 2020 - <a href="#">Purchase</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

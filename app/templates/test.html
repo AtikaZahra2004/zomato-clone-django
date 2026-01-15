@@ -1,0 +1,383 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOMOTO - All Products</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/test.css' %}">
+</head>
+<body>
+
+  <!-- ===== Navbar Start ===== -->
+   <header>
+        <div class="logo">
+            <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">   
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                  <li class="dropdown">
+                    <a href="">About <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'test' %}">Testimonials</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                        
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'page' %}">Page</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="">Catalog <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
+                        <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                        <li><a href="{% url 'profile' %}">My account</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'contact' %}">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <a href="{% url 'contact' %}" class="phone">0905-456-987-3</a>
+            <a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i><span class="cart-count">   {{ request.session.cart|length }}</span></a>
+            <i class="fa fa-search"></i>
+        </div>
+    </header>
+<section class="hero-banner">
+  <div class="overlay">
+    <div class="banner-content">
+      <h1>Testimonials</h1>
+      <div class="breadcrumb">
+        <a href="{% url 'home' %}">Home</a>
+        <span>|</span>
+        <span>Testimonials</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- t1 -->
+ <div class="t1">
+  <!-- Reviews Section -->
+  <section class="reviews">
+    <h5 class="sub-title">Partners</h5>
+    <h2 class="title">Top Clients Reviews</h2>
+    <div class="review-box">
+      <p class="quote">❝</p>
+      <p class="review-text">
+        Nullam orci dui, dictum et magna sollicitudin, tempor blandit erat. 
+        Maecenas suscipit tellus sit amet augue placerat fringilla id a lacus. 
+        Morbi viverra volutpat ex, id pellentesque felis volutpat eu. 
+        Etiam mattis laoreet leo sed accumsan. 
+        Fusce tincidunt in leo lacinia condimentum.
+      </p>
+      <div class="reviewer">
+        <img src="https://i.pravatar.cc/50" alt="Reviewer">
+        <div>
+          <h4>Patrick Stone</h4>
+          <span>Freelancer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback Section -->
+  <section class="feedback">
+   
+<section class="contact-form">
+     <h5 class="sub-title">Feedback</h5>
+    <h2 class="title">Leave your Review</h2>
+    <p class="feedback-text">
+      Maecenas est dui, commodo a arcu non, 
+      sagittis tincidunt mi. Aliquam euismod dapibus turpis, 
+      vitae placerat purus vestibulum non.
+    </p>
+  <h2>Send Message</h2>
+  <form method="POST" action="{% url 'contact' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+    </div>
+    <textarea name="message" placeholder="Message" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- {% if messages %}
+    <div class="alert">
+      {% for msg in messages %}
+        <p>{{ msg }}</p>
+      {% endfor %}
+    </div>
+  {% endif %} -->
+
+</section>
+  </section>
+
+</div>
+
+<!-- t2 -->
+ <div class="t2">
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h5 class="sub-title">Testimonials</h5>
+    <h2 class="title">What our clients say</h2>
+
+    <div class="testimonials-grid">
+
+      <!-- Card 1 -->
+      <div class="testimonial-card">
+        <p class="quote">❝</p>
+        <p class="text">
+          Nullam orci dui, dictum et magna sollicitudin, tempor blandit erat. 
+          Maecenas suscipit tellus sit amet augue placerat fringilla id a lacus.
+        </p>
+        <div class="author">
+          <img src="https://i.pravatar.cc/60?img=1" alt="">
+          <div>
+            <h4>Patrick Stone</h4>
+            <span>Freelancer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="testimonial-card bg-light">
+        <p class="quote">❝</p>
+        <p class="text">
+          Maecenas ultricies felis at amet libero scelerisque, ut eleifend 
+          leo mattis. Aliquam facilisis tellus mattis.
+        </p>
+        <div class="author">
+          <img src="https://i.pravatar.cc/60?img=2" alt="">
+          <div>
+            <h4>Hugo James</h4>
+            <span>Manager</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="testimonial-card">
+        <p class="quote">❝</p>
+        <p class="text">
+          Nullam orci dui, dictum et magna sollicitudin, tempor blandit erat. 
+          Fusce tincidunt in leo lacinia condimentum.
+        </p>
+        <div class="author">
+          <img src="https://i.pravatar.cc/60?img=3" alt="">
+          <div>
+            <h4>Cassie Carleton</h4>
+            <span>Designer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="testimonial-card">
+        <p class="quote">❝</p>
+        <p class="text">
+          Morbi viverra volutpat ex, id pellentesque felis volutpat eu. 
+          Donec placerat est vel condimentum mattis.
+        </p>
+        <div class="author">
+          <img src="https://i.pravatar.cc/60?img=4" alt="">
+          <div>
+            <h4>Stefanie Rushford</h4>
+            <span>Developer</span>
+          </div>
+        </div>
+      </div>
+
+   
+       <div class="testimonial-card bg-light">
+        <p class="quote">❝</p>
+        <p class="text">
+          Aenean quam augue, semper eu aliquam eget, sagittis ut dui. 
+          Suspendisse nec luctus lacus.
+        </p>
+        <div class="author">
+          <img src="https://i.pravatar.cc/60?img=8" alt="">
+          <div>
+            <h4>Michael Brown</h4>
+            <span>Marketing Expert</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="testimonial-card">
+        <p class="quote">❝</p>
+        <p class="text">
+          Donec placerat, ex vel consequat mattis, sapien lacus pretium 
+          elit, sed tincidunt dolor nibh non nisi.
+        </p>
+        <div class="author">
+          <img src="https://i.pravatar.cc/60?img=6" alt="">
+          <div>
+            <h4>Fredrick Yolanda</h4>
+            <span>SEO Manager</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="testimonial-card">
+        <p class="quote">❝</p>
+        <p class="text">
+          Duis ut tellus imperdiet, lacinia risus id, tincidunt ipsum. 
+          Integer euismod velit id.
+        </p>
+        <div class="author">
+          <img src="https://i.pravatar.cc/60?img=7" alt="">
+          <div>
+            <h4>Sara Williams</h4>
+            <span>Entrepreneur</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="testimonial-card bg-light">
+        <p class="quote">❝</p>
+        <p class="text">
+          Aenean quam augue, semper eu aliquam eget, sagittis ut dui. 
+          Suspendisse nec luctus lacus.
+        </p>
+        <div class="author">
+          <img src="https://i.pravatar.cc/60?img=8" alt="">
+          <div>
+            <h4>Michael Brown</h4>
+            <span>Marketing Expert</span>
+          </div>
+        </div>
+      </div>
+
+       <!-- Card 6 -->
+      <div class="testimonial-card">
+        <p class="quote">❝</p>
+        <p class="text">
+          Donec placerat, ex vel consequat mattis, sapien lacus pretium 
+          elit, sed tincidunt dolor nibh non nisi.
+        </p>
+        <div class="author">
+          <img src="https://i.pravatar.cc/60?img=6" alt="">
+          <div>
+            <h4>Fredrick Yolanda</h4>
+            <span>SEO Manager</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- footer -->
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="cta-img">
+    <img src="{% static 'images/blog4.jpg' %}" alt="Main Article">
+    </div>
+    <div class="cta-text">
+      <div class="cta-icon">
+        <i class="fas fa-phone-alt"></i>
+      </div>
+      <p class="cta-subtitle">Call us to make order now</p>
+      <p class="cta-number">90-500-28-999</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-logo">
+                <img src="{% static 'images/logo_2x.png' %}" alt="GOMOTO Logo">
+ 
+  </div>
+  <p class="footer-text">
+    Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo.
+    Vestibulum mattis, nisi ut faucibus commodo, risus ex commodo.
+  </p>
+
+  <div class="footer-social">
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      Like-themes © All Rights Reserved - 2020 - <a href="#">Purchase</a>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

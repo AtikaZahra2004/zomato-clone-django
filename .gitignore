@@ -1,0 +1,14 @@
+# Virtual environment
+env/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Database
+db.sqlite3
+
+# Junk static files (tumhare error ke liye)
+app/static/images/MP Board*
+*.download
